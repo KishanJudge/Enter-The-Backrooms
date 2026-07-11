@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Enter the Backrooms</title>
+    <link rel = "stylesheet" type = "text/css" href = "stylesheet.css"> 
+</head>
+
+<body>
+<canvas id = "wall">
+
+</canvas>
+
+<script src = "script.js"></script>
+</body>
+
+</html>
+
+
+<!--
+Before any game loop or map exists, prove the illusion works with the inverse rule. 
+Make a bare HTML page with a canvas and a script. 
+In the script, loop over each column x of the canvas, 
+invent a distance for that column — for instance, 
+pretend a wall recedes from left to right:
+const dist = 1 + (x / canvas.width) * 9;   
+// 1 unit near, 10 units far
+const sliceHeight = canvas.height / dist;
+Then draw each column as a vertical stripe: 
+ceiling-coloured above the slice, 
+wall-coloured for the slice (centred vertically), 
+floor-coloured below. Maybe 25 lines of code, all yours.
+-->
