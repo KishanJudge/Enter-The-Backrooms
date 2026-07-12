@@ -4,7 +4,7 @@ const ctx = wall.getContext('2d'); //webgl(2) for 3D
 const numCols = wall.width;
 const colWidth = wall.width / numCols;
 
-
+/*
 for (let i = 0; i < numCols; i++) {
     const x = i * colWidth;
     const distance =  1 + (i / numCols) * 9;
@@ -33,15 +33,28 @@ for (let i = 0; i < numCols; i++) {
     og
     #e8d87a
     #8b7e3c
-    */
+    
 
     ctx.fillRect(x, wallTop, colWidth, sliceHeight); //x, y, w, h. extends right by w and down by h
 
     ctx.fillStyle = "#6b5f4a";
     ctx.fillRect(x, wallTop + sliceHeight, colWidth, wall.height - (wallTop + sliceHeight));
+} */
+
+let lastTimestamp = 0;
+function frame(timestamp) {
+    update();
+    render();
+    requestAnimationFrame(frame);
 }
+requestAnimationFrame(frame);
 
+const deltaTime = (timestamp - lastTimestamp) / 1000;
+lastTimestamp = timestamp;
 
+function render() {
+
+}
 /*
 - Context object (ctx) — all drawing methods live here (fillRect, strokeRect, arc, lineTo, drawImage, fillText, etc.). 2d is the common one; webgl/webgl2 expose GPU-based 3D drawing with shaders.
 - Immediate mode — there's no retained scene graph. To change or animate anything, you clear (ctx.clearRect) and redraw the whole frame.
