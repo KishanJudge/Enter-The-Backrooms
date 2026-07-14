@@ -1,6 +1,15 @@
 const wall = document.getElementById("wall");
 const ctx = wall.getContext('2d'); //webgl(2) for 3D
 
+function canvasResize() {
+    wall.width = window.innerWidth;
+    wall.height = window.innerHeight;
+}
+
+canvasResize();
+window.addEventListener("resize", canvasResize);
+
+
 const numCols = wall.width;
 const colWidth = wall.width / numCols;
 
@@ -41,20 +50,38 @@ for (let i = 0; i < numCols; i++) {
     ctx.fillRect(x, wallTop + sliceHeight, colWidth, wall.height - (wallTop + sliceHeight));
 } */
 
+let redX = 0, redY = 0;
+let blueX = 0, blueY = wall.height / 2;
+
 let lastTimestamp = 0;
+
 function frame(timestamp) {
-    update();
+    const deltaTime = (timestamp - lastTimestamp) / 1000;
+    lastTimestamp = timestamp;
+    update(deltaTime);
     render();
     requestAnimationFrame(frame);
 }
+
 requestAnimationFrame(frame);
 
-const deltaTime = (timestamp - lastTimestamp) / 1000;
-lastTimestamp = timestamp;
+
 
 function render() {
+    ctx.clearRect(0,0,wall.width,wall.height);
+    ctx.fillStyle = "red";
+    ctx.fillRect(redX, redY, 10, 10);
+    ctx.fillStyle = "blue";
+    ctx.fillRect(blueX, blueY, 10, 10);
 
 }
+
+function update(deltaTime) {
+    redX += 2.5;
+    blueX += 150 * deltaTime;
+}
+
+
 /*
 - Context object (ctx) — all drawing methods live here (fillRect, strokeRect, arc, lineTo, drawImage, fillText, etc.). 2d is the common one; webgl/webgl2 expose GPU-based 3D drawing with shaders.
 - Immediate mode — there's no retained scene graph. To change or animate anything, you clear (ctx.clearRect) and redraw the whole frame.
